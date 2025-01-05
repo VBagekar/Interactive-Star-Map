@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Star Map</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Explore the Cosmos</h1>
+    </header>
+
+    <div class="star-map-container">
+      <div class="controls">
+        <button id="zoom-in">Zoom In</button>
+        <button id="zoom-out">Zoom Out</button>
+        <button id="toggle-constellations">Toggle Constellations</button>
+      </div>
+
+      <div id="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search constellations"
+        />
+        <button id="search-button">Search</button>
+      </div>
+
+      <div id="constellation-details">
+        <h2 id="constellation-name"></h2>
+        <p id="constellation-coordinates"></p>
+        <p id="constellation-distance"></p>
+        <p id="constellation-facts"></p>
+      </div>
+
+      <div id="star-map">
+        <svg id="star-map-svg" viewBox="0 0 1000 1000">
+          <!-- Lyra -->
+          <g id="lyra" class="constellation">
+            <circle
+              class="star"
+              cx="200"
+              cy="100"
+              r="2.3"
+              data-name="Vega"
+              data-distance="25 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="220"
+              cy="150"
+              r="1.9"
+              data-name="Sheliak"
+              data-distance="960 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="250"
+              cy="120"
+              r="2"
+              data-name="Sulafat"
+              data-distance="620 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="200"
+              y1="100"
+              x2="220"
+              y2="150"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="220"
+              y1="150"
+              x2="250"
+              y2="120"
+            ></line>
+            <text x="200" y="90" class="constellation-label">Lyra</text>
+          </g>
+          <!-- Orion -->
+          <g id="orion" class="constellation">
+            <circle
+              class="star"
+              cx="300"
+              cy="200"
+              r="4"
+              data-name="Betelgeuse"
+              data-distance="642 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="330"
+              cy="220"
+              r="3.2"
+              data-name="Bellatrix"
+              data-distance="244 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="360"
+              cy="180"
+              r="1.89"
+              data-name="Rigel"
+              data-distance="863 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="300"
+              y1="200"
+              x2="330"
+              y2="220"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="330"
+              y1="220"
+              x2="360"
+              y2="180"
+            ></line>
+            <text x="300" y="190" class="constellation-label">Orion</text>
+          </g>
+          <!-- Cassiopeia -->
+          <g id="cassiopeia" class="constellation">
+            <circle
+              class="star"
+              cx="400"
+              cy="300"
+              r="4.2"
+              data-name="Schedar"
+              data-distance="228 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="420"
+              cy="280"
+              r="3.6"
+              data-name="Caph"
+              data-distance="54 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="440"
+              cy="320"
+              r="3.92"
+              data-name="Ruchbah"
+              data-distance="99 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="460"
+              cy="290"
+              r="0.99"
+              data-name="Segin"
+              data-distance="441 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="400"
+              y1="300"
+              x2="420"
+              y2="280"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="420"
+              y1="280"
+              x2="440"
+              y2="320"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="440"
+              y1="320"
+              x2="460"
+              y2="290"
+            ></line>
+            <text x="400" y="290" class="constellation-label">Cassiopeia</text>
+          </g>
+          <!-- Add 7 more constellations here in a similar format -->
+          <g id="draco" class="constellation">
+            <circle
+              class="star"
+              cx="500"
+              cy="400"
+              r="3.9"
+              data-name="Eltanin"
+              data-distance="148 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="520"
+              cy="450"
+              r="4.5"
+              data-name="Rastaban"
+              data-distance="362 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="540"
+              cy="420"
+              r="3.9"
+              data-name="Thuban"
+              data-distance="303 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="560"
+              cy="460"
+              r="4.5"
+              data-name="Grumium"
+              data-distance="112 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="500"
+              y1="400"
+              x2="520"
+              y2="450"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="520"
+              y1="450"
+              x2="540"
+              y2="420"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="540"
+              y1="420"
+              x2="560"
+              y2="460"
+            ></line>
+            <text x="500" y="390" class="constellation-label">Draco</text>
+          </g>
+          <g id="ursa-major" class="constellation">
+            <circle
+              class="star"
+              cx="600"
+              cy="200"
+              r="3.9"
+              data-name="Dubhe"
+              data-distance="123 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="620"
+              cy="220"
+              r="4.1"
+              data-name="Merak"
+              data-distance="79 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="640"
+              cy="180"
+              r="3.9"
+              data-name="Phecda"
+              data-distance="83 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="660"
+              cy="230"
+              r="0.9"
+              data-name="Megrez"
+              data-distance="81 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="600"
+              y1="200"
+              x2="620"
+              y2="220"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="620"
+              y1="220"
+              x2="640"
+              y2="180"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="640"
+              y1="180"
+              x2="660"
+              y2="230"
+            ></line>
+            <text x="600" y="190" class="constellation-label">Ursa Major</text>
+          </g>
+          <g id="cepheus" class="constellation">
+            <circle
+              class="star"
+              cx="700"
+              cy="150"
+              r="3.5"
+              data-name="Alderamin"
+              data-distance="49 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="720"
+              cy="170"
+              r="4.5"
+              data-name="Alfirk"
+              data-distance="690 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="700"
+              y1="150"
+              x2="720"
+              y2="170"
+            ></line>
+            <text x="700" y="140" class="constellation-label">Cepheus</text>
+          </g>
+
+          <!-- Aquila -->
+          <g id="aquila" class="constellation">
+            <circle
+              class="star"
+              cx="600"
+              cy="550"
+              r="5"
+              data-name="Altair"
+              data-distance="17 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="620"
+              cy="570"
+              r="5"
+              data-name="Tarazed"
+              data-distance="460 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="600"
+              y1="550"
+              x2="620"
+              y2="570"
+            ></line>
+            <text x="600" y="540" class="constellation-label">Aquila</text>
+          </g>
+          <!-- Leo -->
+          <g id="leo" class="constellation">
+            <circle
+              class="star"
+              cx="450"
+              cy="600"
+              r="5"
+              data-name="Regulus"
+              data-distance="79 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="470"
+              cy="630"
+              r="5"
+              data-name="Denebola"
+              data-distance="36 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="490"
+              cy="610"
+              r="5"
+              data-name="Algieba"
+              data-distance="130 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="450"
+              y1="600"
+              x2="470"
+              y2="630"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="470"
+              y1="630"
+              x2="490"
+              y2="610"
+            ></line>
+            <text x="450" y="590" class="constellation-label">Leo</text>
+          </g>
+
+          <!-- Pisces -->
+          <g id="pisces" class="constellation">
+            <circle
+              class="star"
+              cx="500"
+              cy="700"
+              r="5"
+              data-name="Eta Piscium"
+              data-distance="350 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="520"
+              cy="730"
+              r="5"
+              data-name="Gamma Piscium"
+              data-distance="130 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="500"
+              y1="700"
+              x2="520"
+              y2="730"
+            ></line>
+            <text x="500" y="690" class="constellation-label">Pisces</text>
+          </g>
+
+          <!-- Sagittarius -->
+          <g id="sagittarius" class="constellation">
+            <circle
+              class="star"
+              cx="600"
+              cy="750"
+              r="5"
+              data-name="Kaus Australis"
+              data-distance="143 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="620"
+              cy="770"
+              r="5"
+              data-name="Nunki"
+              data-distance="220 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="640"
+              cy="760"
+              r="5"
+              data-name="Ascella"
+              data-distance="89 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="600"
+              y1="750"
+              x2="620"
+              y2="770"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="620"
+              y1="770"
+              x2="640"
+              y2="760"
+            ></line>
+            <text x="600" y="740" class="constellation-label">Sagittarius</text>
+          </g>
+
+          <!-- Scorpius -->
+          <g id="scorpius" class="constellation">
+            <circle
+              class="star"
+              cx="300"
+              cy="700"
+              r="5"
+              data-name="Antares"
+              data-distance="550 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="320"
+              cy="720"
+              r="5"
+              data-name="Shaula"
+              data-distance="570 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="300"
+              y1="700"
+              x2="320"
+              y2="720"
+            ></line>
+            <text x="300" y="690" class="constellation-label">Scorpius</text>
+          </g>
+
+          <!-- Sextans -->
+          <g id="sextans" class="constellation">
+            <circle
+              class="star"
+              cx="380"
+              cy="760"
+              r="5"
+              data-name="Alpha Sextantis"
+              data-distance="280 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="400"
+              cy="780"
+              r="5"
+              data-name="Gamma Sextantis"
+              data-distance="300 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="380"
+              y1="760"
+              x2="400"
+              y2="780"
+            ></line>
+            <text x="380" y="750" class="constellation-label">Sextans</text>
+          </g>
+
+          <!-- Taurus -->
+          <g id="taurus" class="constellation">
+            <circle
+              class="star"
+              cx="580"
+              cy="500"
+              r="5"
+              data-name="Aldebaran"
+              data-distance="65 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="600"
+              cy="520"
+              r="5"
+              data-name="Elnath"
+              data-distance="131 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="580"
+              y1="500"
+              x2="600"
+              y2="520"
+            ></line>
+            <text x="580" y="490" class="constellation-label">Taurus</text>
+          </g>
+
+          <!-- Ursa Major -->
+          <g id="ursa-major" class="constellation">
+            <circle
+              class="star"
+              cx="450"
+              cy="200"
+              r="5"
+              data-name="Dubhe"
+              data-distance="120 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="470"
+              cy="220"
+              r="5"
+              data-name="Merak"
+              data-distance="80 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="490"
+              cy="240"
+              r="5"
+              data-name="Phecda"
+              data-distance="83 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="450"
+              y1="200"
+              x2="470"
+              y2="220"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="470"
+              y1="220"
+              x2="490"
+              y2="240"
+            ></line>
+            <text x="450" y="190" class="constellation-label">Ursa Major</text>
+          </g>
+
+          <!-- Ursa Minor -->
+          <g id="ursa-minor" class="constellation">
+            <circle
+              class="star"
+              cx="350"
+              cy="150"
+              r="5"
+              data-name="Polaris"
+              data-distance="433 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="370"
+              cy="170"
+              r="5"
+              data-name="Kochab"
+              data-distance="130 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="350"
+              y1="150"
+              x2="370"
+              y2="170"
+            ></line>
+            <text x="350" y="140" class="constellation-label">Ursa Minor</text>
+          </g>
+
+          <!-- Virgo -->
+          <g id="virgo" class="constellation">
+            <circle
+              class="star"
+              cx="500"
+              cy="550"
+              r="5"
+              data-name="Spica"
+              data-distance="250 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="520"
+              cy="570"
+              r="5"
+              data-name="Porrima"
+              data-distance="40 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="540"
+              cy="560"
+              r="5"
+              data-name="Vindemiatrix"
+              data-distance="100 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="500"
+              y1="550"
+              x2="520"
+              y2="570"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="520"
+              y1="570"
+              x2="540"
+              y2="560"
+            ></line>
+            <text x="500" y="540" class="constellation-label">Virgo</text>
+          </g>
+          <!-- Cetus -->
+          <g id="cetus" class="constellation">
+            <circle
+              class="star"
+              cx="600"
+              cy="400"
+              r="5"
+              data-name="Mira"
+              data-distance="418 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="620"
+              cy="420"
+              r="5"
+              data-name="Deneb Kaitos"
+              data-distance="96 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="600"
+              y1="400"
+              x2="620"
+              y2="420"
+            ></line>
+            <text x="600" y="390" class="constellation-label">Cetus</text>
+          </g>
+
+          <!-- Corona Borealis -->
+          <g id="corona-borealis" class="constellation">
+            <circle
+              class="star"
+              cx="700"
+              cy="200"
+              r="5"
+              data-name="Alphecca"
+              data-distance="75 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="720"
+              cy="220"
+              r="5"
+              data-name="Nusakan"
+              data-distance="114 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="700"
+              y1="200"
+              x2="720"
+              y2="220"
+            ></line>
+            <text x="700" y="190" class="constellation-label">
+              Corona Borealis
+            </text>
+          </g>
+
+          <!-- Draco -->
+          <g id="draco" class="constellation">
+            <circle
+              class="star"
+              cx="550"
+              cy="50"
+              r="5"
+              data-name="Eltanin"
+              data-distance="154 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="570"
+              cy="70"
+              r="5"
+              data-name="Thuban"
+              data-distance="303 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="590"
+              cy="90"
+              r="5"
+              data-name="Rastaban"
+              data-distance="380 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="550"
+              y1="50"
+              x2="570"
+              y2="70"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="570"
+              y1="70"
+              x2="590"
+              y2="90"
+            ></line>
+            <text x="550" y="40" class="constellation-label">Draco</text>
+          </g>
+
+          <!-- Capricornus -->
+          <g id="capricornus" class="constellation">
+            <circle
+              class="star"
+              cx="200"
+              cy="500"
+              r="5"
+              data-name="Deneb Algedi"
+              data-distance="39 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="220"
+              cy="520"
+              r="5"
+              data-name="Dabih"
+              data-distance="329 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="200"
+              y1="500"
+              x2="220"
+              y2="520"
+            ></line>
+            <text x="200" y="490" class="constellation-label">Capricornus</text>
+          </g>
+
+          <!-- Canes Venatici -->
+          <g id="canes-venatici" class="constellation">
+            <circle
+              class="star"
+              cx="250"
+              cy="600"
+              r="5"
+              data-name="Cor Caroli"
+              data-distance="110 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="270"
+              cy="620"
+              r="5"
+              data-name="Chara"
+              data-distance="27 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="250"
+              y1="600"
+              x2="270"
+              y2="620"
+            ></line>
+            <text x="250" y="590" class="constellation-label">
+              Canes Venatici
+            </text>
+          </g>
+
+          <!-- Andromeda -->
+          <g id="andromeda" class="constellation">
+            <circle
+              class="star"
+              cx="300"
+              cy="400"
+              r="5"
+              data-name="Alpheratz"
+              data-distance="97 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="320"
+              cy="420"
+              r="5"
+              data-name="Mirach"
+              data-distance="200 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="300"
+              y1="400"
+              x2="320"
+              y2="420"
+            ></line>
+            <text x="300" y="390" class="constellation-label">Andromeda</text>
+          </g>
+
+          <!-- Hydra -->
+          <g id="hydra" class="constellation">
+            <circle
+              class="star"
+              cx="700"
+              cy="500"
+              r="5"
+              data-name="Alphard"
+              data-distance="177 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="720"
+              cy="520"
+              r="5"
+              data-name="Beta Hydrae"
+              data-distance="365 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="700"
+              y1="500"
+              x2="720"
+              y2="520"
+            ></line>
+            <text x="700" y="490" class="constellation-label">Hydra</text>
+          </g>
+
+          <!-- Phoenix -->
+          <g id="phoenix" class="constellation">
+            <circle
+              class="star"
+              cx="400"
+              cy="800"
+              r="5"
+              data-name="Ankaa"
+              data-distance="77 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="420"
+              cy="820"
+              r="5"
+              data-name="Beta Phoenicis"
+              data-distance="200 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="400"
+              y1="800"
+              x2="420"
+              y2="820"
+            ></line>
+            <text x="400" y="790" class="constellation-label">Phoenix</text>
+          </g>
+
+          <!-- Auriga -->
+          <g id="auriga" class="constellation">
+            <circle
+              class="star"
+              cx="500"
+              cy="300"
+              r="5"
+              data-name="Capella"
+              data-distance="43 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="520"
+              cy="320"
+              r="5"
+              data-name="Menkalinan"
+              data-distance="82 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="500"
+              y1="300"
+              x2="520"
+              y2="320"
+            ></line>
+            <text x="500" y="290" class="constellation-label">Auriga</text>
+          </g>
+
+          <!-- Perseus -->
+          <g id="perseus" class="constellation">
+            <circle
+              class="star"
+              cx="600"
+              cy="350"
+              r="5"
+              data-name="Algol"
+              data-distance="92 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="620"
+              cy="370"
+              r="5"
+              data-name="Mirfak"
+              data-distance="590 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="600"
+              y1="350"
+              x2="620"
+              y2="370"
+            ></line>
+            <text x="600" y="340" class="constellation-label">Perseus</text>
+          </g>
+
+          <!-- Canis Major -->
+          <g id="canis-major" class="constellation">
+            <circle
+              class="star"
+              cx="400"
+              cy="650"
+              r="5"
+              data-name="Sirius"
+              data-distance="8.6 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="420"
+              cy="670"
+              r="5"
+              data-name="Adhara"
+              data-distance="430 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="400"
+              y1="650"
+              x2="420"
+              y2="670"
+            ></line>
+            <text x="400" y="640" class="constellation-label">Canis Major</text>
+          </g>
+
+          <g id="cygnus" class="constellation">
+            <circle
+              class="star"
+              cx="900"
+              cy="600"
+              r="5"
+              data-name="Deneb"
+              data-distance="2,600 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="920"
+              cy="650"
+              r="5"
+              data-name="Sadr"
+              data-distance="1,800 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="940"
+              cy="620"
+              r="5"
+              data-name="Albireo"
+              data-distance="430 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="900"
+              y1="600"
+              x2="920"
+              y2="650"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="920"
+              y1="650"
+              x2="940"
+              y2="620"
+            ></line>
+            <text x="900" y="590" class="constellation-label">Cygnus</text>
+          </g>
+          <g id="ursa-minor" class="constellation">
+            <circle
+              class="star"
+              cx="250"
+              cy="700"
+              r="5"
+              data-name="Polaris"
+              data-distance="323 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="270"
+              cy="680"
+              r="5"
+              data-name="Kochab"
+              data-distance="131 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="290"
+              cy="720"
+              r="5"
+              data-name="Pherkad"
+              data-distance="480 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="250"
+              y1="700"
+              x2="270"
+              y2="680"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="270"
+              y1="680"
+              x2="290"
+              y2="720"
+            ></line>
+            <text x="250" y="690" class="constellation-label">Ursa Minor</text>
+          </g>
+          <g id="canis-major" class="constellation">
+            <circle
+              class="star"
+              cx="600"
+              cy="400"
+              r="5"
+              data-name="Sirius"
+              data-distance="8.6 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="620"
+              cy="450"
+              r="5"
+              data-name="Adhara"
+              data-distance="430 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="640"
+              cy="410"
+              r="5"
+              data-name="Wezen"
+              data-distance="1600 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="600"
+              y1="400"
+              x2="620"
+              y2="450"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="620"
+              y1="450"
+              x2="640"
+              y2="410"
+            ></line>
+            <text x="600" y="390" class="constellation-label">Canis Major</text>
+          </g>
+          <g id="pegasus" class="constellation">
+            <circle
+              class="star"
+              cx="700"
+              cy="600"
+              r="5"
+              data-name="Markab"
+              data-distance="133 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="720"
+              cy="580"
+              r="5"
+              data-name="Scheat"
+              data-distance="199 light-years"
+            ></circle>
+            <circle
+              class="star"
+              cx="740"
+              cy="620"
+              r="5"
+              data-name="Algenib"
+              data-distance="390 light-years"
+            ></circle>
+            <line
+              class="constellation-line"
+              x1="700"
+              y1="600"
+              x2="720"
+              y2="580"
+            ></line>
+            <line
+              class="constellation-line"
+              x1="720"
+              y1="580"
+              x2="740"
+              y2="620"
+            ></line>
+            <text x="700" y="590" class="constellation-label">Pegasus</text>
+          </g>
+
+          <!-- Starry Background -->
+
+          <!-- Random stars -->
+           
+          <circle cx="50" cy="60" r="1.5" fill="silver"></circle>
+          <circle cx="200" cy="100" r="2" fill="silver"></circle>
+          <circle cx="400" cy="300" r="1" fill="silver"></circle>
+          <circle cx="400" cy="200" r="1.5" fill="silver"></circle>
+          <circle cx="750" cy="500" r="2" fill="silver"></circle>
+          <circle cx="50" cy="60" r="1.5" fill="silver"></circle>
+          <circle cx="200" cy="700" r="2" fill="silver"></circle>
+          <circle cx="400" cy="200" r="1" fill="silver"></circle>
+          <circle cx="600" cy="100" r="1.5" fill="silver"></circle>
+          <circle cx="800" cy="500" r="2" fill="silver"></circle>
+          <circle cx="900" cy="400" r="1.5" fill="silver"></circle>
+          <circle cx="1000" cy="600" r="1" fill="silver"></circle>
+          <circle cx="1200" cy="700" r="2" fill="silver"></circle>
+          <circle cx="1400" cy="300" r="1.5" fill="silver"></circle>
+          <circle cx="1600" cy="150" r="1" fill="silver"></circle>
+          <circle cx="50" cy="80" r="1.2" fill="silver"></circle>
+          <circle cx="100" cy="150" r="2.5" fill="silver"></circle>
+          <circle cx="150" cy="250" r="1.8" fill="silver"></circle>
+          <circle cx="200" cy="350" r="1.3" fill="silver"></circle>
+          <circle cx="250" cy="450" r="1.7" fill="silver"></circle>
+          <circle cx="300" cy="550" r="2.2" fill="silver"></circle>
+          <circle cx="350" cy="50" r="1.6" fill="silver"></circle>
+          <circle cx="400" cy="150" r="1.4" fill="silver"></circle>
+          <circle cx="450" cy="250" r="1.9" fill="silver"></circle>
+          <circle cx="500" cy="350" r="2.1" fill="silver"></circle>
+          <circle cx="550" cy="450" r="1.3" fill="silver"></circle>
+          <circle cx="600" cy="550" r="2.4" fill="silver"></circle>
+          <circle cx="650" cy="150" r="1.5" fill="silver"></circle>
+          <circle cx="700" cy="250" r="2.3" fill="silver"></circle>
+          <circle cx="750" cy="350" r="1.2" fill="silver"></circle>
+          <circle cx="800" cy="450" r="1.7" fill="silver"></circle>
+          <circle cx="850" cy="550" r="2.1" fill="silver"></circle>
+          <circle cx="900" cy="50" r="1.6" fill="silver"></circle>
+          <circle cx="950" cy="150" r="1.3" fill="silver"></circle>
+          <circle cx="1000" cy="250" r="2.2" fill="silver"></circle>
+          <circle cx="1050" cy="350" r="1.8" fill="silver"></circle>
+          <circle cx="1100" cy="450" r="1.4" fill="silver"></circle>
+          <circle cx="1150" cy="550" r="2.3" fill="silver"></circle>
+          <circle cx="1200" cy="150" r="1.7" fill="silver"></circle>
+          <circle cx="1250" cy="250" r="2.5" fill="silver"></circle>
+          <circle cx="1300" cy="350" r="1.9" fill="silver"></circle>
+          <circle cx="1350" cy="450" r="2.0" fill="silver"></circle>
+          <circle cx="1400" cy="550" r="1.5" fill="silver"></circle>
+          <circle cx="1450" cy="50" r="1.2" fill="silver"></circle>
+          <circle cx="1500" cy="150" r="2.4" fill="silver"></circle>
+          <circle cx="1550" cy="250" r="1.3" fill="silver"></circle>
+          <circle cx="1600" cy="350" r="1.6" fill="silver"></circle>
+          <circle cx="1650" cy="450" r="2.2" fill="silver"></circle>
+          <circle cx="1700" cy="550" r="1.8" fill="silver"></circle>
+          <circle cx="1750" cy="50" r="2.1" fill="silver"></circle>
+          <circle cx="1800" cy="150" r="1.4" fill="silver"></circle>
+          <circle cx="1850" cy="250" r="2.3" fill="silver"></circle>
+          <circle cx="1900" cy="350" r="1.7" fill="silver"></circle>
+          <circle cx="1950" cy="450" r="1.5" fill="silver"></circle>
+          <circle cx="2000" cy="550" r="2.5" fill="silver"></circle>
+          <circle cx="2050" cy="150" r="1.9" fill="silver"></circle>
+          <circle cx="2100" cy="250" r="2.4" fill="silver"></circle>
+          <circle cx="2150" cy="350" r="1.6" fill="silver"></circle>
+          <circle cx="2200" cy="450" r="1.3" fill="silver"></circle>
+          <circle cx="2250" cy="550" r="2.2" fill="silver"></circle>
+          <circle cx="2300" cy="50" r="1.8" fill="silver"></circle>
+          <circle cx="2350" cy="150" r="1.7" fill="silver"></circle>
+          <circle cx="2400" cy="250" r="2.0" fill="silver"></circle>
+          <circle cx="100" cy="80" r="1.2" fill="silver"></circle>
+          <circle cx="150" cy="200" r="2.0" fill="silver"></circle>
+          <circle cx="200" cy="300" r="1.8" fill="silver"></circle>
+          <circle cx="250" cy="400" r="1.5" fill="silver"></circle>
+          <circle cx="300" cy="500" r="2.3" fill="silver"></circle>
+          <circle cx="350" cy="600" r="1.6" fill="silver"></circle>
+          <circle cx="400" cy="700" r="1.9" fill="silver"></circle>
+          <circle cx="450" cy="100" r="2.4" fill="silver"></circle>
+          <circle cx="500" cy="200" r="1.7" fill="silver"></circle>
+          <circle cx="550" cy="300" r="1.5" fill="silver"></circle>
+          <circle cx="600" cy="400" r="2.2" fill="silver"></circle>
+          <circle cx="650" cy="500" r="1.3" fill="silver"></circle>
+          <circle cx="700" cy="600" r="1.4" fill="silver"></circle>
+          <circle cx="750" cy="700" r="1.6" fill="silver"></circle>
+          <circle cx="800" cy="50" r="2.0" fill="silver"></circle>
+          <circle cx="850" cy="150" r="1.8" fill="silver"></circle>
+          <circle cx="900" cy="250" r="1.2" fill="silver"></circle>
+          <circle cx="950" cy="350" r="1.7" fill="silver"></circle>
+          <circle cx="1000" cy="450" r="2.1" fill="silver"></circle>
+          <circle cx="50" cy="100" r="3" fill="silver"></circle>
+          <circle cx="100" cy="200" r="3.5" fill="silver"></circle>
+          <circle cx="150" cy="300" r="4" fill="silver"></circle>
+          <circle cx="200" cy="400" r="3.5" fill="silver"></circle>
+          <circle cx="250" cy="500" r="4" fill="silver"></circle>
+          <circle cx="300" cy="600" r="3.5" fill="silver"></circle>
+          <circle cx="350" cy="700" r="3" fill="silver"></circle>
+          <circle cx="400" cy="100" r="4" fill="silver"></circle>
+          <circle cx="450" cy="200" r="3.5" fill="silver"></circle>
+          <circle cx="500" cy="300" r="4" fill="silver"></circle>
+          <circle cx="550" cy="400" r="3" fill="silver"></circle>
+          <circle cx="600" cy="500" r="3.5" fill="silver"></circle>
+          <circle cx="650" cy="600" r="4" fill="silver"></circle>
+          <circle cx="700" cy="700" r="3.5" fill="silver"></circle>
+          <circle cx="750" cy="800" r="3" fill="silver"></circle>
+          <circle cx="800" cy="150" r="4" fill="silver"></circle>
+          <circle cx="850" cy="250" r="3.5" fill="silver"></circle>
+          <circle cx="900" cy="350" r="4" fill="silver"></circle>
+          <circle cx="950" cy="450" r="3.5" fill="silver"></circle>
+          <circle cx="1000" cy="550" r="3" fill="silver"></circle>
+          <circle cx="1050" cy="650" r="4" fill="silver"></circle>
+          <circle cx="1100" cy="750" r="3.5" fill="silver"></circle>
+          <circle cx="1150" cy="850" r="3" fill="silver"></circle>
+          <circle cx="1200" cy="300" r="4" fill="silver"></circle>
+          <circle cx="1250" cy="400" r="3.5" fill="silver"></circle>
+          <circle cx="1300" cy="500" r="4" fill="silver"></circle>
+          <circle cx="1350" cy="600" r="3.5" fill="silver"></circle>
+          <circle cx="1400" cy="700" r="3" fill="silver"></circle>
+          <circle cx="1450" cy="800" r="4" fill="silver"></circle>
+          <circle cx="1500" cy="150" r="3.5" fill="silver"></circle>
+          <circle cx="1550" cy="250" r="4" fill="silver"></circle>
+          <circle cx="1600" cy="350" r="3.5" fill="silver"></circle>
+          <circle cx="1650" cy="450" r="3" fill="silver"></circle>
+          <circle cx="1700" cy="550" r="4" fill="silver"></circle>
+          <circle cx="1750" cy="650" r="3.5" fill="silver"></circle>
+          <circle cx="1800" cy="750" r="4" fill="silver"></circle>
+          <circle cx="1850" cy="100" r="3.5" fill="silver"></circle>
+          <circle cx="1900" cy="200" r="4" fill="silver"></circle>
+          <circle cx="1950" cy="300" r="3.5" fill="silver"></circle>
+          <circle cx="2000" cy="400" r="3" fill="silver"></circle>
+          <circle cx="2050" cy="500" r="4" fill="silver"></circle>
+          <circle cx="2100" cy="600" r="3.5" fill="silver"></circle>
+          <circle cx="2150" cy="700" r="4" fill="silver"></circle>
+          <circle cx="2200" cy="800" r="3.5" fill="silver"></circle>
+          <circle cx="2250" cy="150" r="3" fill="silver"></circle>
+          <circle cx="2300" cy="250" r="4" fill="silver"></circle>
+          <circle cx="100" cy="120" r="4.5" fill="silver"></circle>
+          <circle cx="180" cy="350" r="4" fill="silver"></circle>
+          <circle cx="250" cy="500" r="5" fill="silver"></circle>
+          <circle cx="320" cy="670" r="4.5" fill="silver"></circle>
+          <circle cx="400" cy="130" r="4" fill="silver"></circle>
+          <circle cx="480" cy="200" r="4.5" fill="silver"></circle>
+          <circle cx="540" cy="300" r="5" fill="silver"></circle>
+          <circle cx="620" cy="450" r="4.5" fill="silver"></circle>
+          <circle cx="700" cy="580" r="4" fill="silver"></circle>
+          <circle cx="800" cy="700" r="4.5" fill="silver"></circle>
+          <circle cx="900" cy="800" r="5" fill="silver"></circle>
+          <circle cx="1000" cy="150" r="4.5" fill="silver"></circle>
+          <circle cx="1100" cy="250" r="4" fill="silver"></circle>
+          <circle cx="1200" cy="350" r="5" fill="silver"></circle>
+          <circle cx="1300" cy="470" r="4.5" fill="silver"></circle>
+          <circle cx="1400" cy="590" r="4" fill="silver"></circle>
+          <circle cx="1500" cy="690" r="4.5" fill="silver"></circle>
+          <circle cx="1600" cy="780" r="5" fill="silver"></circle>
+          <circle cx="1700" cy="200" r="4.5" fill="silver"></circle>
+          <circle cx="1800" cy="300" r="4" fill="silver"></circle>
+          <circle cx="1900" cy="400" r="5" fill="silver"></circle>
+          <circle cx="2000" cy="520" r="4.5" fill="silver"></circle>
+          <circle cx="2100" cy="630" r="4" fill="silver"></circle>
+          <circle cx="2200" cy="750" r="4.5" fill="silver"></circle>
+          <circle cx="2300" cy="850" r="5" fill="silver"></circle>
+          <circle cx="2400" cy="100" r="4.5" fill="silver"></circle>
+          <circle cx="2500" cy="200" r="4" fill="silver"></circle>
+          <circle cx="2600" cy="300" r="5" fill="silver"></circle>
+          <circle cx="2700" cy="450" r="4.5" fill="silver"></circle>
+          <circle cx="2800" cy="560" r="4" fill="silver"></circle>
+          <circle cx="2900" cy="680" r="4.5" fill="silver"></circle>
+          <circle cx="3000" cy="790" r="5" fill="silver"></circle>
+          <circle cx="3100" cy="150" r="4.5" fill="silver"></circle>
+          <circle cx="3200" cy="250" r="4" fill="silver"></circle>
+          <circle cx="3300" cy="370" r="5" fill="silver"></circle>
+          <circle cx="3400" cy="480" r="4.5" fill="silver"></circle>
+          <circle cx="3500" cy="600" r="4" fill="silver"></circle>
+          <circle cx="3600" cy="710" r="4.5" fill="silver"></circle>
+          <circle cx="3700" cy="820" r="5" fill="silver"></circle>
+          <circle cx="3800" cy="100" r="4.5" fill="silver"></circle>
+          <circle cx="3900" cy="200" r="4" fill="silver"></circle>
+          <circle cx="4000" cy="300" r="5" fill="silver"></circle>
+          <circle cx="4100" cy="430" r="4.5" fill="silver"></circle>
+          <circle cx="4200" cy="550" r="4" fill="silver"></circle>
+          <circle cx="4300" cy="670" r="4.5" fill="silver"></circle>
+          <circle cx="4400" cy="780" r="5" fill="silver"></circle>
+          <circle cx="4500" cy="100" r="4.5" fill="silver"></circle>
+          <circle cx="4600" cy="200" r="4" fill="silver"></circle>
+          <circle cx="4700" cy="300" r="5" fill="silver"></circle>
+          <circle cx="50" cy="950" r="4.5" fill="silver"></circle>
+          <circle cx="100" cy="1020" r="4" fill="silver"></circle>
+          <circle cx="150" cy="1120" r="5" fill="silver"></circle>
+          <circle cx="200" cy="1210" r="4.5" fill="silver"></circle>
+          <circle cx="250" cy="1330" r="4" fill="silver"></circle>
+          <circle cx="300" cy="1410" r="5" fill="silver"></circle>
+          <circle cx="350" cy="1510" r="4.5" fill="silver"></circle>
+          <circle cx="400" cy="1600" r="4" fill="silver"></circle>
+          <circle cx="450" cy="1700" r="5" fill="silver"></circle>
+          <circle cx="500" cy="1810" r="4.5" fill="silver"></circle>
+          <circle cx="550" cy="1910" r="4" fill="silver"></circle>
+          <circle cx="600" cy="2010" r="5" fill="silver"></circle>
+          <circle cx="650" cy="2110" r="4.5" fill="silver"></circle>
+          <circle cx="700" cy="2200" r="4" fill="silver"></circle>
+          <circle cx="750" cy="2300" r="5" fill="silver"></circle>
+          <circle cx="800" cy="2400" r="4.5" fill="silver"></circle>
+          <circle cx="850" cy="2500" r="4" fill="silver"></circle>
+          <circle cx="900" cy="2600" r="5" fill="silver"></circle>
+          <circle cx="950" cy="2700" r="4.5" fill="silver"></circle>
+          <circle cx="1000" cy="2800" r="4" fill="silver"></circle>
+          <circle cx="1050" cy="2900" r="5" fill="silver"></circle>
+          <circle cx="1100" cy="3000" r="4.5" fill="silver"></circle>
+          <circle cx="1150" cy="3100" r="4" fill="silver"></circle>
+          <circle cx="1200" cy="3200" r="5" fill="silver"></circle>
+          <circle cx="1250" cy="3300" r="4.5" fill="silver"></circle>
+          <circle cx="1300" cy="3400" r="4" fill="silver"></circle>
+          <circle cx="1350" cy="3500" r="5" fill="silver"></circle>
+          <circle cx="1400" cy="3600" r="4.5" fill="silver"></circle>
+          <circle cx="1450" cy="3700" r="4" fill="silver"></circle>
+          <circle cx="1500" cy="3800" r="5" fill="silver"></circle>
+          <circle cx="1550" cy="3900" r="4.5" fill="silver"></circle>
+          <circle cx="1600" cy="4000" r="4" fill="silver"></circle>
+          <circle cx="1650" cy="4100" r="5" fill="silver"></circle>
+          <circle cx="1700" cy="4200" r="4.5" fill="silver"></circle>
+          <circle cx="1750" cy="4300" r="4" fill="silver"></circle>
+          <circle cx="1800" cy="4400" r="5" fill="silver"></circle>
+          <circle cx="1850" cy="4500" r="4.5" fill="silver"></circle>
+          <circle cx="1900" cy="4600" r="4" fill="silver"></circle>
+          <circle cx="1950" cy="4700" r="5" fill="silver"></circle>
+          <circle cx="2000" cy="4800" r="4.5" fill="silver"></circle>
+          <circle cx="2050" cy="4900" r="4" fill="silver"></circle>
+          <circle cx="2100" cy="5000" r="5" fill="silver"></circle>
+          <circle cx="2150" cy="5100" r="4.5" fill="silver"></circle>
+          <circle cx="2200" cy="5200" r="4" fill="silver"></circle>
+          <circle cx="2250" cy="5300" r="5" fill="silver"></circle>
+          <circle cx="2300" cy="5400" r="4.5" fill="silver"></circle>
+          <circle cx="2350" cy="5500" r="4" fill="silver"></circle>
+          <circle cx="2400" cy="5600" r="5" fill="silver"></circle>
+          <circle cx="30" cy="960" r="4.5" fill="silver"></circle>
+          <circle cx="80" cy="1030" r="4" fill="silver"></circle>
+          <circle cx="130" cy="1130" r="5" fill="silver"></circle>
+          <circle cx="180" cy="1220" r="4.5" fill="silver"></circle>
+          <circle cx="230" cy="1340" r="4" fill="silver"></circle>
+          <circle cx="280" cy="1420" r="5" fill="silver"></circle>
+          <circle cx="330" cy="1520" r="4.5" fill="silver"></circle>
+          <circle cx="380" cy="1610" r="4" fill="silver"></circle>
+          <circle cx="430" cy="1710" r="5" fill="silver"></circle>
+          <circle cx="480" cy="1820" r="4.5" fill="silver"></circle>
+          <circle cx="530" cy="1920" r="4" fill="silver"></circle>
+          <circle cx="580" cy="2020" r="5" fill="silver"></circle>
+          <circle cx="630" cy="2120" r="4.5" fill="silver"></circle>
+          <circle cx="680" cy="2210" r="4" fill="silver"></circle>
+          <circle cx="730" cy="2310" r="5" fill="silver"></circle>
+          <circle cx="780" cy="2410" r="4.5" fill="silver"></circle>
+          <circle cx="830" cy="2510" r="4" fill="silver"></circle>
+          <circle cx="880" cy="2610" r="5" fill="silver"></circle>
+          <circle cx="930" cy="2710" r="4.5" fill="silver"></circle>
+          <circle cx="980" cy="2810" r="4" fill="silver"></circle>
+          <circle cx="1030" cy="2910" r="5" fill="silver"></circle>
+          <circle cx="1080" cy="3010" r="4.5" fill="silver"></circle>
+          <circle cx="1130" cy="3110" r="4" fill="silver"></circle>
+          <circle cx="1180" cy="3210" r="5" fill="silver"></circle>
+          <circle cx="1230" cy="3310" r="4.5" fill="silver"></circle>
+          <circle cx="1280" cy="3410" r="4" fill="silver"></circle>
+          <circle cx="1330" cy="3510" r="5" fill="silver"></circle>
+          <circle cx="1380" cy="3610" r="4.5" fill="silver"></circle>
+          <circle cx="1430" cy="3710" r="4" fill="silver"></circle>
+          <circle cx="1480" cy="3810" r="5" fill="silver"></circle>
+          <circle cx="1530" cy="3910" r="4.5" fill="silver"></circle>
+          <circle cx="1580" cy="4010" r="4" fill="silver"></circle>
+          <circle cx="1630" cy="4110" r="5" fill="silver"></circle>
+          <circle cx="1680" cy="4210" r="4.5" fill="silver"></circle>
+          <circle cx="1730" cy="4310" r="4" fill="silver"></circle>
+          <circle cx="1780" cy="4410" r="5" fill="silver"></circle>
+          <circle cx="1830" cy="4510" r="4.5" fill="silver"></circle>
+          <circle cx="1880" cy="4610" r="4" fill="silver"></circle>
+          <circle cx="1930" cy="4710" r="5" fill="silver"></circle>
+          <circle cx="1980" cy="4810" r="4.5" fill="silver"></circle>
+          <circle cx="2030" cy="4910" r="4" fill="silver"></circle>
+          <circle cx="2080" cy="5010" r="5" fill="silver"></circle>
+          <circle cx="2130" cy="5110" r="4.5" fill="silver"></circle>
+          <circle cx="2180" cy="5210" r="4" fill="silver"></circle>
+          <circle cx="2230" cy="5310" r="5" fill="silver"></circle>
+          <circle cx="2280" cy="5410" r="4.5" fill="silver"></circle>
+          <circle cx="2330" cy="5510" r="4" fill="silver"></circle>
+          <circle cx="2380" cy="5610" r="5" fill="silver"></circle>
+        </svg>
+      </div>
+
+      <div id="star-info"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
